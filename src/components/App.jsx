@@ -19,11 +19,8 @@ export const App = () => {
     setLocalStorage('contacts', contacts);
   }, [contacts]);
 
-  const handleSubmit = event => {
+  const handleSubmit = (name, number) => {
     const id = nanoid();
-    const number = event.number;
-    const name = event.name;
-
     const contactsLists = [...contacts];
 
     if (contactsLists.findIndex(contact => name === contact.name) !== -1) {
@@ -40,8 +37,8 @@ export const App = () => {
   };
 
   const fitered = () => {
-    return contacts.filter(contact => {
-      return contact.name.toLocaleLowerCase().includes(filter.toLowerCase());
+    return contacts.filter(({ name }) => {
+      return name.toLowerCase().includes(filter.toLowerCase());
     });
   };
 
